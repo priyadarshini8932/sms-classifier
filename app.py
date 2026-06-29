@@ -42,6 +42,20 @@ st.markdown("""
 
 }
 
+/* Hide Streamlit UI */
+
+header{
+    visibility:hidden;
+}
+
+footer{
+    visibility:hidden;
+}
+
+#MainMenu{
+    visibility:hidden;
+}
+
 /* TITLE */
 
 h1{
@@ -78,9 +92,17 @@ label{
 
     padding:14px;
 
-    background:rgba(255,255,255,0.08);
+    background:white;
 
-    color:black;
+    color:black !important;
+
+}
+
+/* Placeholder */
+
+.stTextArea textarea::placeholder{
+
+    color:#6B7280;
 
 }
 
@@ -114,8 +136,8 @@ label{
 
 ps = PorterStemmer()
 
-tfidf = pickle.load(open('vectorizer.pkl','rb'))
-model = pickle.load(open('model.pkl','rb'))
+tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
 
 st.title("Spam Detection System")
 
@@ -123,7 +145,6 @@ input_sms = st.text_area(
     "Enter your message",
     height=150
 )
-
 
 def transform_text(text):
 
@@ -160,7 +181,7 @@ def transform_text(text):
     return " ".join(y)
 
 
-if st.button('Predict'):
+if st.button("Predict"):
 
     transformed_sms = transform_text(input_sms)
 
@@ -175,5 +196,3 @@ if st.button('Predict'):
     else:
 
         st.success("Not Spam")
-
-       
